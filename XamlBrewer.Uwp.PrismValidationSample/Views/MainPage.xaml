@@ -1,0 +1,55 @@
+﻿<Page x:Class="XamlBrewer.Uwp.PrismValidationSample.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:XamlBrewer.Uwp.PrismValidationSample"
+      xmlns:vm="using:XamlBrewer.Uwp.PrismValidationSample.ViewModels"
+      xmlns:mvvm="using:Mvvm"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <mvvm:DateTimeToDateTimeOffsetConverter x:Key="DateConverter" />
+    </Page.Resources>
+    
+    <Page.DataContext>
+        <vm:CivilizationViewModel />
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Image Source="ms-appx:///Assets/starfleet_command.png"
+               Stretch="Uniform"
+               VerticalAlignment="Top" />
+        <StackPanel Grid.Column="1"
+                    Margin="8">
+            <TextBlock Text="New Civilization Registration Form"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       Margin="0 0 0 16"
+                       FontWeight="SemiBold" />
+            <TextBox Text="{Binding Name, Mode=TwoWay}"
+                     Header="Name" />
+            <TextBlock Text="{Binding Errors[Name][0]}"
+                       Foreground="Red"
+                       HorizontalAlignment="Right" />
+            <TextBox Text="{Binding EstimatedPopulation, Mode=TwoWay}"
+                     Header="Estimated Population" />
+            <TextBlock Text="{Binding Errors[EstimatedPopulation][0]}"
+                       Foreground="Red"
+                       HorizontalAlignment="Right" />
+            <DatePicker Date="{Binding DiscoveryDate, Mode=TwoWay, Converter={StaticResource DateConverter}}" />
+            <TextBlock Text="{Binding Errors[DiscoveryDate][0]}"
+                       Foreground="Red"
+                       HorizontalAlignment="Right" />
+            <DatePicker Date="{Binding MembershipDate, Mode=TwoWay, Converter={StaticResource DateConverter}}" />
+            <TextBlock Text="{Binding Errors[MembershipDate][0]}"
+                       Foreground="Red"
+                       HorizontalAlignment="Right" />
+            <ItemsControl x:Name="ErrorList"
+                          ItemsSource="{Binding Errors.Errors}" />
+        </StackPanel>
+    </Grid>
+</Page>
