@@ -29,7 +29,7 @@ namespace Mvvm
                 return ValidationResult.Success;
             }
 
-            var otherValue = propertyInfo.GetValue(obj.ObjectInstance);
+            dynamic otherValue = propertyInfo.GetValue(obj.ObjectInstance);
 
             if (otherValue == null)
             {
@@ -37,7 +37,8 @@ namespace Mvvm
             }
 
             // Unfortunately we have to use the DateTime type here.
-            var compare = ((IComparable<DateTime>)otherValue).CompareTo((DateTime)value);
+            //var compare = ((IComparable<DateTime>)otherValue).CompareTo((DateTime)value);
+            var compare = otherValue.CompareTo((DateTime)value);
 
             if (compare >= 0)
             {

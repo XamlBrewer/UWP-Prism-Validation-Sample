@@ -50,7 +50,7 @@ namespace XamlBrewer.Uwp.PrismValidationSample.ViewModels
             set { SetProperty(ref discoveryDate, value); }
         }
 
-        [GreaterThanProperty("DiscoveryDate", ErrorMessage="Membership should be after Discovery date.")]
+        [GreaterThanProperty("DiscoveryDate", ErrorMessage="Affiliation date should come after date of first contact.")]
         public DateTime MembershipDate
         {
             get { return membershipDate; }
