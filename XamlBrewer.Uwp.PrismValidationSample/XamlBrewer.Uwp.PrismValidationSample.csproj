@@ -100,7 +100,7 @@
     <Compile Include="Mvvm\BindableValidator.cs" />
     <Compile Include="Mvvm\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Mvvm\DelegateCommand.cs" />
-    <Compile Include="Mvvm\GreaterThanPropertyAttribute.cs" />
+    <Compile Include="Mvvm\LaterThanPropertyAttribute.cs" />
     <Compile Include="Mvvm\IValidatableBindableBase.cs" />
     <Compile Include="Mvvm\NumericAttribute.cs" />
     <Compile Include="Mvvm\ValidatableBindableBase.cs" />

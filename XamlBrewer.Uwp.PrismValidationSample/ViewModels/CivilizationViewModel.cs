@@ -12,7 +12,7 @@ namespace XamlBrewer.Uwp.PrismValidationSample.ViewModels
     internal class CivilizationViewModel : ValidatableBindableBase
     {
         private string name;
-        private string quadrant;
+        private string location;
         private string estimatedPopulation;
         private DateTime membershipDate;
         private DateTime discoveryDate;
@@ -31,10 +31,11 @@ namespace XamlBrewer.Uwp.PrismValidationSample.ViewModels
             set { SetProperty(ref name, value); }
         }
 
-        public string Quadrant
+        [RegularExpression(@"[ABCD]\d{2,5}", ErrorMessage="Location is Quadrant (A -> D) and Sector (2 -> 5 digits)")]
+        public string Location
         {
-            get { return quadrant; }
-            set { SetProperty(ref quadrant, value); }
+            get { return location; }
+            set { SetProperty(ref location, value); }
         }
 
         [Numeric(ErrorMessage = "Population should be numeric.")]
@@ -50,7 +51,7 @@ namespace XamlBrewer.Uwp.PrismValidationSample.ViewModels
             set { SetProperty(ref discoveryDate, value); }
         }
 
-        [GreaterThanProperty("DiscoveryDate", ErrorMessage="Affiliation date should come after date of first contact.")]
+        [LaterThanPropertyAttribute("DiscoveryDate", ErrorMessage="Affiliation date should come after date of first contact.")]
         public DateTime MembershipDate
         {
             get { return membershipDate; }

@@ -11,7 +11,7 @@
     <Page.Resources>
         <mvvm:DateTimeToDateTimeOffsetConverter x:Key="DateConverter" />
     </Page.Resources>
-    
+
     <Page.DataContext>
         <vm:CivilizationViewModel />
     </Page.DataContext>
@@ -21,16 +21,16 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        
+
         <!-- Image -->
         <Image Source="ms-appx:///Assets/starfleet_command.png"
                Stretch="Uniform"
-               VerticalAlignment="Top" Margin="0 60 0 0" />
-        
+               VerticalAlignment="Top"
+               Margin="0 60 0 0" />
+
         <!-- Logo -->
-        <Viewbox Grid.Column="1"
-                 VerticalAlignment="Bottom"
-                 HorizontalAlignment="Right"
+        <Viewbox VerticalAlignment="Bottom"
+                 HorizontalAlignment="Left"
                  StretchDirection="DownOnly"
                  Margin="8"
                  Width="160">
@@ -86,9 +86,9 @@
             <TextBlock Text="{Binding Errors[EstimatedPopulation][0]}"
                        Foreground="Red"
                        HorizontalAlignment="Right" />
-            <TextBox Text="{Binding Quadrant, Mode=TwoWay}"
+            <TextBox Text="{Binding Location, Mode=TwoWay}"
                      Header="Galactic coordinates" />
-            <TextBlock Text="{Binding Errors[Quadrant][0]}"
+            <TextBlock Text="{Binding Errors[Location][0]}"
                        Foreground="Red"
                        HorizontalAlignment="Right" />
             <DatePicker Date="{Binding DiscoveryDate, Mode=TwoWay, Converter={StaticResource DateConverter}}"
@@ -102,7 +102,16 @@
                        Foreground="Red"
                        HorizontalAlignment="Right" />
             <ItemsControl x:Name="ErrorList"
-                          ItemsSource="{Binding Errors.Errors}" />
+                          Margin="0 16 0 0"
+                          ItemsSource="{Binding Errors.Errors}"
+                          Foreground="MidnightBlue"/>
+
         </StackPanel>
+        <Button Content="Validate"
+                Command="{Binding ValidateCommand}"
+                Grid.Column="1"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Margin="8" />
     </Grid>
 </Page>

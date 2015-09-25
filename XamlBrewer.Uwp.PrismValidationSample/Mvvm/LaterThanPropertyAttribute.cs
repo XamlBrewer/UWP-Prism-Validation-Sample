@@ -4,14 +4,17 @@ using System.Reflection;
 
 namespace Mvvm
 {
+    /// <summary>
+    /// Checks whether a DateTime is later than another Property.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public class GreaterThanPropertyAttribute : ValidationAttribute
+    public class LaterThanPropertyAttribute : ValidationAttribute
     {
-        string _prop;
+        string propertyName;
 
-        public GreaterThanPropertyAttribute(string prop)
+        public LaterThanPropertyAttribute(string propertyName)
         {
-            this._prop = prop;
+            this.propertyName = propertyName;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext obj)
@@ -21,7 +24,7 @@ namespace Mvvm
                 return ValidationResult.Success;
             }
 
-            var propertyInfo = obj.ObjectInstance.GetType().GetProperty(this._prop);
+            var propertyInfo = obj.ObjectInstance.GetType().GetProperty(this.propertyName);
 
             if (propertyInfo == null)
             {

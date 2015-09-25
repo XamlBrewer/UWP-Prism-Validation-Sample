@@ -3,12 +3,18 @@
 namespace Mvvm
 {
     /// <summary>
-    /// Sample cumstom validation for Integer values.
+    /// Sample custom validation for Integer values.
     /// </summary>
     public class NumericAttribute: ValidationAttribute
     {
         public override bool IsValid(object value)
         {
+            // The [Required] attribute should test this.
+            if (value == null)
+            {
+                return true;
+            }
+
             int result;
             return int.TryParse(value.ToString(), out result);
         }
