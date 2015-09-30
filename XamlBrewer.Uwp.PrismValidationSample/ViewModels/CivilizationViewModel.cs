@@ -41,7 +41,7 @@ namespace XamlBrewer.Uwp.PrismValidationSample.ViewModels
             set { SetProperty(ref estimatedPopulation, value); }
         }
 
-        // Should have a NotLaterThanProperty attribute.
+        // [NotLaterThanProperty ...]
         public DateTime DiscoveryDate
         {
             get { return discoveryDate; }
@@ -55,6 +55,9 @@ namespace XamlBrewer.Uwp.PrismValidationSample.ViewModels
                 // Triggers the validation twice. Silly overkill.
                 // MembershipDate = new DateTime(membershipDate.Ticks+1);
                 // MembershipDate = new DateTime(membershipDate.Ticks-1);
+
+                // This is the right way to link property validations.
+                Errors.ValidateProperty("MembershipDate");
             }
         }
 
